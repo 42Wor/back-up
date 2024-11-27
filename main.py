@@ -1,5 +1,7 @@
 import os
-import shutil
+import sys
+sys.path.append('/home/maaz/Desktop/backup_make')
+import _11 as n
 import time
 
 def copytree(src, dst, symlinks=False, ignore=None):
@@ -11,10 +13,10 @@ def copytree(src, dst, symlinks=False, ignore=None):
         try:
             if os.path.isdir(s):
                 print("tree")
-                shutil.copytree(s, d, symlinks, ignore)
+                n.copytree(s, d, symlinks, ignore)
             else:
                 print("copy2")
-                shutil.copy2(s, d+date_format)
+                n.copy2(s, d+date_format)
         except Exception as e:
             print(f"Error copying {s} to {d}: {e}")
     else:
@@ -35,7 +37,7 @@ def manage_folders(directory):
             folder_path = os.path.join(directory, folder)
             try:
 
-                shutil.rmtree(folder_path)
+                n.rmtree(folder_path)
                 print(f"Deleted folder: {folder}")
             except Exception as e:
                 print(f"Error deleting {folder}: {e}")
@@ -45,7 +47,8 @@ def manage_folders(directory):
 
 if __name__ == "__main__":
 
-    source = "/home/maaz/Desktop/backup_make/s"
-    destination = "/home/maaz/Desktop/backup_make/b"#end add '/ '  , k_up/
+
+    source = "/home/maaz/Desktop"
+    destination = "/media/maaz/maaz1/projects_back_up"#end add '/ '  , k_up/
     copytree(source, destination)
     manage_folders(destination)
